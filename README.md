@@ -5,8 +5,8 @@ This project is a CLI-based voice assistant built for the Voice AI Intern Task. 
 ---
 
 ## 🔧 Features
--  Voice input via microphone
-- ✍Transcription using Whisper
+- Voice input via microphone
+- Transcription using Whisper
 - RAG (Retrieval-Augmented Generation) with FAISS over PDF documentation
 - LLM completions using OpenRouter (Mistral-7B)
 - Persona-driven prompt injection
@@ -15,7 +15,7 @@ This project is a CLI-based voice assistant built for the Voice AI Intern Task. 
 
 ---
 
-## 🚀 Setup Instructions
+## Setup Instructions
 
 ### 1. Clone the Repository
 ```bash
@@ -29,7 +29,7 @@ Create a file named `.env` in the root directory:
 OPENROUTER_API_KEY=your_openrouter_api_key_here
 ```
 
-> ⚠️ Note: Use OpenRouter's free key for Mistral models. Key may expire due to rate limits.
+> Note: Use OpenRouter's free key for Mistral models. Key may expire due to rate limits.
 
 ### 3. Install Requirements
 ```bash
