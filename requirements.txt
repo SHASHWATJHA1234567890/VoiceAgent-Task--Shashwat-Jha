@@ -1,0 +1,15 @@
+flask
+python-dotenv
+openai
+requests
+gtts
+uuid
+langchain
+faiss-cpu
+sentence-transformers
+whisper
+sounddevice
+scipy
+numpy
+torch
+pydub
