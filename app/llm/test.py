@@ -1,8 +1,19 @@
 import requests
+import os
+from dotenv import dotenv_values
+from pathlib import Path
 
-url = "https://openrouter.ai/api/v1/chat/completions"
+env_path = Path(__file__).resolve().parents[2] / ".env"
+print("ENV PATH:", env_path)
+
+# Directly load and print contents
+env_vars = dotenv_values(env_path)
+
+key = env_vars["OPENROUTER_API_KEY"]
+print("key loaded:", key)
+
 headers = {
-    "Authorization": "Bearer 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",  # Replace directly here
+    "Authorization": f"Bearer {key}",
     "Content-Type": "application/json"
 }
 data = {
@@ -12,6 +23,6 @@ data = {
     ]
 }
 
-response = requests.post(url, headers=headers, json=data)
+response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=data)
 print(response.status_code)
 print(response.text)

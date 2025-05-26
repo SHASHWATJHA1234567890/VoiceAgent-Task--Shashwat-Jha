@@ -2,12 +2,16 @@ from app.stt.record import record_audio
 from app.stt.whisper_stt import transcribe_audio
 from app.tts.speak import speak
 from app.llm.openrouter_llm import get_response
-from dotenv import load_dotenv
-import os
+from dotenv import dotenv_values
+from pathlib import Path
 
-load_dotenv()
-key=os.getenv("OPENROUTER_API_KEY")
-print("Key loaded:", key)
+env_path = Path(__file__).resolve().parent / ".env"
+print("ENV PATH:", env_path)
+
+# Directly load and print contents
+env_vars = dotenv_values(env_path)
+
+key = env_vars["OPENROUTER_API_KEY"]
 
 if __name__=="__main__":
     #Load the prompt
