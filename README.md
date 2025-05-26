@@ -4,14 +4,14 @@ This project is a CLI-based voice assistant built for the Voice AI Intern Task. 
 
 ---
 
-## 🔧 Features
-- Voice input via microphone
-- Transcription using Whisper
-- RAG (Retrieval-Augmented Generation) with FAISS over PDF documentation
-- LLM completions using OpenRouter (Mistral-7B)
-- Persona-driven prompt injection
-- Spoken responses using gTTS
-- Conversation logging to `chat_log.json`
+## Features
+1. Voice input via microphone
+2. Transcription using Whisper
+3. RAG (Retrieval-Augmented Generation) with FAISS over PDF documentation
+4. LLM completions using OpenRouter (Mistral-7B)
+5. Persona-driven prompt injection
+6. Spoken responses using gTTS
+7. Conversation logging to `chat_log.json`
 
 ---
 
