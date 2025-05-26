@@ -1,6 +1,6 @@
 # VoiceAgent Task – Shashwat Jha
 
-This project is a CLI-based voice assistant built for the Voice AI Intern Task. It enables users to interact using speech and receive contextual, spoken responses based on a custom persona and documentation.
+This project is a CLI-based voice assistant. It enables users to interact using speech and receive contextual, spoken responses based on a custom persona and documentation.
 
 ---
 
