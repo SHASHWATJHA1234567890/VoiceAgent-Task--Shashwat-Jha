@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nira - Voice Assistant</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      max-width: 700px;
+      margin: auto;
+      background-color: #f9f9f9;
+    }
+    button {
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    #chat {
+      margin-top: 2rem;
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      height: 400px;
+      overflow-y: auto;
+    }
+    .message {
+      margin-bottom: 1rem;
+    }
+    .user {
+      font-weight: bold;
+      color: #2a2a2a;
+    }
+    .assistant {
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <h1>Talk to Nira 🎙️</h1>
+  <button id="recordButton">Start Talking</button>
+  <div id="chat"></div>
+
+  <script>
+    let mediaRecorder;
+    let audioChunks = [];
+    const chatDiv = document.getElementById("chat");
+    const recordButton = document.getElementById("recordButton");
+
+    function appendMessage(sender, text) {
+      const div = document.createElement("div");
+      div.className = "message";
+      div.innerHTML = `<span class="${sender}">${sender === 'user' ? '👤 You' : '🤖 Nira'}:</span> ${text}`;
+      chatDiv.appendChild(div);
+      chatDiv.scrollTop = chatDiv.scrollHeight;
+    }
+
+    recordButton.onclick = async () => {
+      if (mediaRecorder && mediaRecorder.state === "recording") {
+        mediaRecorder.stop();
+        recordButton.innerText = "Start Talking";
+        return;
+      }
+
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaRecorder = new MediaRecorder(stream);
+
+      audioChunks = [];
+      mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+
+      mediaRecorder.onstop = async () => {
+        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+        const formData = new FormData();
+        formData.append('audio', audioBlob, 'voice.wav');
+
+        const res = await fetch('/transcribe', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await res.json();
+        appendMessage("user", data.transcript);
+        appendMessage("assistant", data.reply);
+      };
+
+      mediaRecorder.start();
+      recordButton.innerText = "Stop Recording";
+    };
+  </script>
+</body>
+</html>
