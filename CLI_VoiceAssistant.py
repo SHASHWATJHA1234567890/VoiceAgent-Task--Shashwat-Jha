@@ -42,9 +42,9 @@ def append_to_chat_log(user_msg, assistant_msg):
 print("Voice Assistant Ready. Press Enter to speak. Type 'q' to quit.\n")
 
 while True:
-    cmd = input("👉 Press Enter to ask or 'q' to quit: ")
+    cmd = input("Press Enter to ask or 'q' to quit: ")
     if cmd.lower() == 'q':
-        print("👋 Exiting. Chat saved to chat_log.json")
+        print("Exiting. Chat saved to chat_log.json")
         break
 
     # Record + transcribe
